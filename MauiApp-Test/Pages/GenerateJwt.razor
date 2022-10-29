@@ -1,0 +1,37 @@
+﻿@page "/generateJwt"
+
+@using MauiApp_Test.Data
+@inject JwtService JwtService
+
+<h3>Generate Jwt</h3>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">JWT: @JwtToken</h5>
+    <p class="card-text">inpute user and password to get jwt</p>
+    <form>
+        <div class="form-group mt-2">
+            <label for="username">Email address</label>
+            <input type="text" class="form-control" id="username"  placeholder="Enter user name" @bind="UserName">
+        </div>
+        <div class="form-group mt-2">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" @bind="Password">
+        </div>
+    </form>
+    <input  class="btn btn-primary mt-5" type="button" @onclick="GetJwt" value="Go"/> 
+  </div>
+</div>
+
+@code {
+    private string UserName { get; set; }
+    private string Password { get; set; }
+
+    private string JwtToken { get; set; }
+
+
+    public async Task GetJwt()
+    {
+        JwtToken = await JwtService.Get(UserName, Password);
+    }
+}
