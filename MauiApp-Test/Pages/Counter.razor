@@ -1,0 +1,28 @@
+﻿@page "/counter"
+
+<h1>@Title</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<input type="text" @bind="inpData"/>
+<input class="btn btn-primary" type="button" @onclick="ChangeTitle" value="change title"/>
+
+@code {
+    private string Title = "Counter";
+
+    private int currentCount = 0;
+
+    private string inpData = "";
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private void ChangeTitle()
+    {
+        Title = inpData;
+    }
+}
